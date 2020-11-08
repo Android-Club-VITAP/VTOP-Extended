@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1086654058216",
+    "firebase_url": "https://vtop-extended-app.firebaseio.com",
+    "project_id": "vtop-extended-app",
+    "storage_bucket": "vtop-extended-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086654058216:android:9f31c4b77853933a39435d",
+        "android_client_info": {
+          "package_name": "com.androidclub.VTOP_Extended"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086654058216-e3lgi95aabg76jjv2h92eqso3p2ta0rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDflVCyVCRtvmfmXtPQytSTPPBQRLQyId0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086654058216-e3lgi95aabg76jjv2h92eqso3p2ta0rj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
