@@ -21,7 +21,7 @@ class _SplashScrState extends State<SplashScr> {
       },
       onError: null,
       loopAnimation: 'Bounce',
-      until: () => Future.delayed(Duration(milliseconds: 0)),
+      until: () => Future.delayed(Duration(milliseconds: 2000)),
     );
   }
 }
