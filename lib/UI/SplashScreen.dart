@@ -1,3 +1,4 @@
+import 'package:VTOP_Extended/UI/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flare_splash_screen/flare_splash_screen.dart';
@@ -17,7 +18,7 @@ class _SplashScrState extends State<SplashScr> {
       fit: BoxFit.fitWidth,
       onSuccess: (_) {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MyApp()));
+            context, MaterialPageRoute(builder: (context) => Wrapper()));
       },
       onError: null,
       loopAnimation: 'Bounce',
