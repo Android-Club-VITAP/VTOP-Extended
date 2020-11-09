@@ -25,6 +25,7 @@ dependencies:
   flare_splash_screen: ^3.0.1
   firebase_auth: ^0.14.0+5
   cloud_firestore: ^0.12.9+4
+  flushbar: ^1.10.4
   flutter:
     sdk: flutter
 
@@ -53,6 +54,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/SplashScreen.flr
+    - assets/images/universe.jpg
+    - assets/images/accounts.jpg
+    - assets/images/google.png
+    - assets/images/Space.png 
+    - assets/images/void.jpg
+    - assets/images/user.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
