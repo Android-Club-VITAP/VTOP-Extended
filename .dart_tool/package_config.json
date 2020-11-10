@@ -134,12 +134,6 @@
       "languageVersion": "2.1"
     },
     {
-      "name": "flushbar",
-      "rootUri": "file:///F:/flutter/.pub-cache/hosted/pub.dartlang.org/flushbar-1.10.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.7"
-    },
-    {
       "name": "flutter",
       "rootUri": "file:///F:/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -224,6 +218,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "provider",
+      "rootUri": "file:///F:/flutter/.pub-cache/hosted/pub.dartlang.org/provider-3.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "quiver",
       "rootUri": "file:///F:/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.5",
       "packageUri": "lib/",
@@ -302,7 +302,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-11-09T14:02:51.690606Z",
+  "generated": "2020-11-09T15:11:05.341657Z",
   "generator": "pub",
   "generatorVersion": "2.10.3"
 }
