@@ -68,14 +68,16 @@ class _RegisterState extends State<Register> {
                           if (result == null) {
                             setState(() => error =
                                 'Error registering with given email and password');
-                          } else {}
+                          }
                         }
                       }),
-                      SizedBox(height: 12.0,),
-                      Text(
-                        error,
-                        style: TextStyle(color: Colors.red, fontSize: 14.0),
-                      ),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  Text(
+                    error,
+                    style: TextStyle(color: Colors.red, fontSize: 14.0),
+                  ),
                 ],
               ))),
     );
