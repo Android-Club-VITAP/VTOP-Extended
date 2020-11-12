@@ -1,4 +1,5 @@
 import 'package:VTOP_Extended/models/user.dart';
+import 'package:VTOP_Extended/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -44,6 +45,8 @@ class AuthService {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      await DatabaseService(uid: user.uid)
+          .updateUserData("Name", "Rollno", ["Clubnames"]);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
