@@ -45,6 +45,7 @@ class AuthService {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      sendEmailVerification();
       await DatabaseService(uid: user.uid)
           .updateUserData("Name", "Rollno", ["Clubnames"]);
       return _userFromFirebaseUser(user);
@@ -61,5 +62,11 @@ class AuthService {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  //User Verification
+  Future<void> sendEmailVerification() async {
+    FirebaseUser user = await _auth.currentUser();
+    user.sendEmailVerification();
   }
 }

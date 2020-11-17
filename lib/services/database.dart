@@ -4,7 +4,7 @@ class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
   final CollectionReference clubCollection =
-      Firestore.instance.collection('clubs');
+      Firestore.instance.collection('users');
   Future updateUserData(
       String name, String rollno, List<String> clubnames) async {
     return await clubCollection.document(uid).setData({
@@ -14,7 +14,7 @@ class DatabaseService {
     });
   }
 
-  Stream<QuerySnapshot> get clubs {
+  Stream<QuerySnapshot> get users {
     return clubCollection.snapshots();
   }
 }

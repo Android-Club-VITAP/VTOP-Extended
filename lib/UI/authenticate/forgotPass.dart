@@ -1,5 +1,3 @@
-import 'package:VTOP_Extended/UI/authenticate/authenticate.dart';
-import 'package:VTOP_Extended/UI/authenticate/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,6 +23,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     if (validatAndSave()) {
       try {
         await _auth.sendPasswordResetEmail(email: _email);
+        setState(() {
+          String errorMsg = "Password reset link sent to email id please check";
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  content: Container(
+                    child: Text(errorMsg),
+                  ),
+                );
+              });
+        });
       } catch (e) {
         print(e);
       }
@@ -100,7 +110,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       Pattern pattern =
                           r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                       RegExp regex = new RegExp(pattern);
-                      if (!(regex.hasMatch(val) && val.isNotEmpty))
+                      if (!(regex.hasMatch(val) &&
+                          val.isNotEmpty &&
+                          val.contains("vitap.ac.in")))
                         return "Please enter a valid Email-ID";
                       else
                         return null;
@@ -121,24 +133,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       child: RaisedButton(
                         color: Colors.blue,
                         onPressed: () {
-                          resetPassword(_email).whenComplete(() => setState(() {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            Authenticate()));
-                                String errorMsg =
-                                    "Password reset link sent to email id please check";
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        content: Container(
-                                          child: Text(errorMsg),
-                                        ),
-                                      );
-                                    });
-                              }));
+                          resetPassword(_email);
                         },
                         child: Text(
                           "Reset Password",

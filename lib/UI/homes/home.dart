@@ -6,11 +6,12 @@ import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<QuerySnapshot>.value(
-      value: DatabaseService().clubs,
-          child: Scaffold(
+      value: DatabaseService().users,
+      child: Scaffold(
         backgroundColor: Colors.brown[50],
         appBar: AppBar(
           title: Text("VTOP-Extended"),
