@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'UI/SplashScreen.dart';
 
 void main() => runApp(App());
+final backgroundColor = Color(0xFF2c2c2c);
 
 class App extends StatelessWidget {
   @override
@@ -12,6 +13,9 @@ class App extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
+        theme: new ThemeData(
+          canvasColor: backgroundColor,
+        ),
         home: SplashScr(),
       ),
     );

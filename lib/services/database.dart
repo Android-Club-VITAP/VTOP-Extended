@@ -6,9 +6,10 @@ class DatabaseService {
   final CollectionReference clubCollection =
       Firestore.instance.collection('users');
   Future updateUserData(
-      String name, String rollno, List<String> clubnames) async {
+      String name, String email, String rollno, List<String> clubnames) async {
     return await clubCollection.document(uid).setData({
       'name': name,
+      'email': email,
       'rollno': rollno,
       'clubs': clubnames,
     });

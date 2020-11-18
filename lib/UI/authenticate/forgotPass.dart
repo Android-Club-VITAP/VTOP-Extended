@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -36,7 +37,33 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               });
         });
       } catch (e) {
-        print(e);
+        setState(() {
+          Flushbar(
+            borderRadius: 8.0,
+            title: "Email not found in database",
+            message: "Please recheck email",
+            flushbarPosition: FlushbarPosition.BOTTOM,
+            flushbarStyle: FlushbarStyle.FLOATING,
+            reverseAnimationCurve: Curves.decelerate,
+            forwardAnimationCurve: Curves.bounceIn,
+            backgroundColor: Colors.black,
+            mainButton: FlatButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "OK",
+                  style: TextStyle(color: Colors.white),
+                )),
+            margin: EdgeInsets.only(bottom: 8, left: 8, right: 8),
+            isDismissible: true,
+            duration: Duration(seconds: 10),
+            icon: Icon(
+              Icons.error_outline,
+              color: Colors.white,
+            ),
+          )..show(context);
+        });
       }
     }
   }

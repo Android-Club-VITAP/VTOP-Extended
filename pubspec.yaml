@@ -28,6 +28,8 @@ dependencies:
   provider: ^3.1.0
   flutter_spinkit: "^4.0.0"
   flushbar: ^1.10.4
+  flutter_staggered_grid_view: any
+  flutter_icons : any
   flutter:
     sdk: flutter
 

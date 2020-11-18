@@ -47,7 +47,7 @@ class AuthService {
       FirebaseUser user = result.user;
       sendEmailVerification();
       await DatabaseService(uid: user.uid)
-          .updateUserData("Name", "Rollno", ["Clubnames"]);
+          .updateUserData("Unknown", user.email, "Rollno", ["Clubnames"]);
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -69,4 +69,17 @@ class AuthService {
     FirebaseUser user = await _auth.currentUser();
     user.sendEmailVerification();
   }
+
+  //Email Verified
+  Future<bool> isEmailVerified() async {
+    FirebaseUser user = await _auth.currentUser();
+    return user.isEmailVerified;
+  }
+
+  Future<FirebaseUser> currentUser() async {
+    FirebaseUser user = await _auth.currentUser();
+    return user;
+  }
+
+  
 }
