@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class QuizPage extends StatefulWidget {
   @override
@@ -11,10 +11,13 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: WebView(
+        padding: const EdgeInsets.all(2.0),
+        child: InAppWebView(
           initialUrl: "http://vtop1.vitap.ac.in:8080/onlineexam/login",
-          javascriptMode: JavascriptMode.unrestricted,
+          initialHeaders: {},
+          onWebViewCreated: (InAppWebViewController controller) {
+            //webView = controller;
+          },
         ),
       ),
     );
