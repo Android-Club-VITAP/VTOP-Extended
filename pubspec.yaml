@@ -29,9 +29,8 @@ dependencies:
   flutter_spinkit: "^4.0.0"
   flushbar: ^1.10.4
   flutter_staggered_grid_view: any
-  flutter_icons : any
-  webview_flutter: ^1.0.7
-  flutter_inappwebview: any
+  flutter_icons : ^1.1.0
+  flutter_inappwebview: ^4.0.0+4
   flutter:
     sdk: flutter
 
