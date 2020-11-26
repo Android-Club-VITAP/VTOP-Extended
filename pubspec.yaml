@@ -30,6 +30,7 @@ dependencies:
   flushbar: ^1.10.4
   flutter_staggered_grid_view: any
   flutter_icons : any
+  webview_flutter: ^1.0.7
   flutter:
     sdk: flutter
 

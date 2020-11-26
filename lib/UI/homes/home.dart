@@ -190,34 +190,32 @@ class _ExtendedHomeState extends State<ExtendedHome> {
         onTap: () => _onSelectItem(i),
       ));
     }
-    return StreamProvider<QuerySnapshot>.value(
-      value: DatabaseService().users,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: backgroundColor,
-          centerTitle: true,
-          title: titles[_selectedDrawerIndex],
-        ),
-        drawer: new Drawer(
-          child: new Column(
-            children: <Widget>[
-              UserAccountsDrawerHeader(
-                decoration: BoxDecoration(
-                    color: firstTabColor,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25))),
-                accountName: name == null ? Text("Unknown") : Text(user.displayName),
-                accountEmail:
-                    email == null ? Text("Email Not found") : Text(user.email),
-              ),
-              new Column(children: drawerOptions)
-            ],
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
         backgroundColor: backgroundColor,
-        body: _getDrawerItemWidget(_selectedDrawerIndex),
+        centerTitle: true,
+        title: titles[_selectedDrawerIndex],
       ),
+      drawer: new Drawer(
+        child: new Column(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                  color: firstTabColor,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25))),
+              accountName:
+                  name == null ? Text("Unknown") : Text(user.displayName),
+              accountEmail:
+                  email == null ? Text("Email Not found") : Text(user.email),
+            ),
+            new Column(children: drawerOptions)
+          ],
+        ),
+      ),
+      backgroundColor: backgroundColor,
+      body: _getDrawerItemWidget(_selectedDrawerIndex),
     );
   }
 }
