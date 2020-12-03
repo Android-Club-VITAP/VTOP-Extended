@@ -155,7 +155,7 @@ class _SignInState extends State<SignIn> {
                               if (_formkey.currentState.validate()) {
                                 setState(() => loading = true);
                                 try {
-                                  dynamic result = await await _auth
+                                  dynamic result = await _auth
                                       .signInWithEmailAndPassword(
                                           email, password);
                                   if (result == null) {

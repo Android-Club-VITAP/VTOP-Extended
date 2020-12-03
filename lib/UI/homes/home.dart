@@ -118,6 +118,7 @@ class _ExtendedHomeState extends State<ExtendedHome> {
     FirebaseUser user = await _auth.currentUser();
     email = user.email;
     name = user.displayName;
+    (context as Element).reassemble();
   }
 
   _getDrawerItemWidget(int pos) {
@@ -168,7 +169,7 @@ class _ExtendedHomeState extends State<ExtendedHome> {
   void initState() {
     super.initState();
     auth = FirebaseAuth.instance;
-    // getCurrentUser();
+    getCurrentUser();
     _checkEmailVerification();
   }
 
@@ -205,10 +206,9 @@ class _ExtendedHomeState extends State<ExtendedHome> {
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(25),
                       bottomRight: Radius.circular(25))),
-              accountName:
-                  name == null ? Text("Unknown") : Text(user.displayName),
+              accountName: name == null ? Text("Unknown") : Text(name),
               accountEmail:
-                  email == null ? Text("Email Not found") : Text(user.email),
+                  email == null ? Text("Email Not found") : Text(email),
             ),
             new Column(children: drawerOptions)
           ],
