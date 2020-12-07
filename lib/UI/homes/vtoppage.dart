@@ -11,7 +11,7 @@ class _VtopPageState extends State<VtopPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(1.0),
         child: InAppWebView(
           initialUrl: "http://vtop2.vitap.ac.in:8070/vtop/",
           initialHeaders: {},

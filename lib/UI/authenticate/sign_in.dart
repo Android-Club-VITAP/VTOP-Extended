@@ -76,7 +76,9 @@ class _SignInState extends State<SignIn> {
                             Pattern pattern =
                                 r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                             RegExp regex = new RegExp(pattern);
-                            if (!(regex.hasMatch(val) && val.isNotEmpty && val.contains('vitap.ac.in')))
+                            if (!(regex.hasMatch(val) &&
+                                val.isNotEmpty &&
+                                val.contains('vitap.ac.in')))
                               return "Please enter a valid Email-ID";
                             else
                               return null;
@@ -155,8 +157,8 @@ class _SignInState extends State<SignIn> {
                               if (_formkey.currentState.validate()) {
                                 setState(() => loading = true);
                                 try {
-                                  dynamic result = await _auth
-                                      .signInWithEmailAndPassword(
+                                  dynamic result =
+                                      await _auth.signInWithEmailAndPassword(
                                           email, password);
                                   if (result == null) {
                                     setState(() {

@@ -24,8 +24,7 @@ class ExtendedHome extends StatefulWidget {
     new DrawerItem("VTOP", AntDesign.weibo_circle, Colors.amber),
     new DrawerItem("Quiz", AntDesign.form, Colors.indigo),
     new DrawerItem("Teacher Database", Entypo.database, Colors.green),
-    new DrawerItem("About", Entypo.notification, Colors.white),
-    new DrawerItem("Logout", Entypo.log_out, Colors.purple),
+    new DrawerItem("About", Entypo.notification, Colors.white)
   ];
 
   @override
@@ -47,8 +46,7 @@ class _ExtendedHomeState extends State<ExtendedHome> {
     new Text("VTOP"),
     new Text("Quiz"),
     new Text("Teachers"),
-    new Text("About the App"),
-    new Text("Logout")
+    new Text("About the App")
   ];
 
   bool _isEmailVerified = false;
@@ -117,7 +115,15 @@ class _ExtendedHomeState extends State<ExtendedHome> {
   getCurrentUser() async {
     FirebaseUser user = await _auth.currentUser();
     email = user.email;
-    name = user.displayName;
+    name = await Firestore.instance
+        .collection("users")
+        .document(user.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        return documentSnapshot.data['name'].toString();
+      }
+    });;
     (context as Element).reassemble();
   }
 
@@ -131,8 +137,6 @@ class _ExtendedHomeState extends State<ExtendedHome> {
         return new VtopPage();
       case 3:
         return new QuizPage();
-      case 6:
-        return signOut();
       default:
         return Center(
             child: new Text(
@@ -219,31 +223,3 @@ class _ExtendedHomeState extends State<ExtendedHome> {
     );
   }
 }
-
-// class Home extends StatelessWidget {
-//   final AuthService _auth = AuthService();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return StreamProvider<QuerySnapshot>.value(
-//       value: DatabaseService().users,
-//       child: Scaffold(
-//         backgroundColor: Colors.brown[50],
-//         appBar: AppBar(
-//           title: Text("VTOP-Extended"),
-//           backgroundColor: Colors.brown[400],
-//           elevation: 0.0,
-//           actions: <Widget>[
-//             FlatButton.icon(
-//                 onPressed: () async {
-//                   await _auth.signOut();
-//                 },
-//                 icon: Icon(Icons.person),
-//                 label: Text("Log Out"))
-//           ],
-//         ),
-//         body: Container(),
-//       ),
-//     );
-//   }
-// }

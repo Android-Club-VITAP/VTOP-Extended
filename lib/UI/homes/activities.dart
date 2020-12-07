@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 class Activities extends StatefulWidget {
   Activities({Key key}) : super(key: key);
 
@@ -75,8 +76,8 @@ class FirstScreen extends StatelessWidget {
                   children: snapshot.data.documents
                       .map((doc) => buildItem(doc))
                       .toList(),
-                   staggeredTiles: 
-                       generateRandomTiles(snapshot.data.documents.length),
+                  staggeredTiles:
+                      generateRandomTiles(snapshot.data.documents.length),
                 );
               },
             )));

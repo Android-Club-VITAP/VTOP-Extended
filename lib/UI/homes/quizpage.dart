@@ -11,7 +11,7 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(1.0),
         child: InAppWebView(
           initialUrl: "http://vtop1.vitap.ac.in:8080/onlineexam/login",
           initialHeaders: {},
