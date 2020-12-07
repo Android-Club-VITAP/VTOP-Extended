@@ -16,8 +16,8 @@ class _ActivitiesState extends State<Activities> {
   AsyncSnapshot<QuerySnapshot> snapshot;
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = Color(0xFF2c2c2c);
-    final firstTabColor = Color(0xFF1d1d1d);
+    // final backgroundColor = Color(0xFF2c2c2c);
+    // final firstTabColor = Color(0xFF1d1d1d);
     return DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -84,23 +84,24 @@ class FirstScreen extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class SecondScreen extends StatelessWidget {
   final seconfTabColor = Color(0xFF1d1d1d);
-  final List Clubs = [
+  final List clubs = [
     "Android Club",
     "Open Source Community",
     "Developer Student's Club",
     "Null Chapter"
   ];
   final List clubtype = ["Technical", "Technical", "Technical", "Technical"];
-  @override
   Firestore firestore;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
-            itemCount: Clubs.length,
+            itemCount: clubs.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 elevation: 5,
@@ -112,7 +113,7 @@ class SecondScreen extends StatelessWidget {
                     ),
                   ),
                   title: Text(
-                    Clubs[index],
+                    clubs[index],
                     style: TextStyle(color: Colors.black //Colors.white
                         ),
                   ),

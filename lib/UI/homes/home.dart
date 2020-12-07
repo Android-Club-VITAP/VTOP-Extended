@@ -6,8 +6,8 @@ import 'package:VTOP_Extended/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:VTOP_Extended/services/database.dart';
-import 'package:provider/provider.dart';
+// import 'package:VTOP_Extended/services/database.dart';
+// import 'package:provider/provider.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class DrawerItem {
@@ -115,15 +115,13 @@ class _ExtendedHomeState extends State<ExtendedHome> {
   getCurrentUser() async {
     FirebaseUser user = await _auth.currentUser();
     email = user.email;
-    name = await Firestore.instance
-        .collection("users")
-        .document(user.uid)
-        .get()
+    name = await Firestore.instance.collection("users").document(user.uid).get()
+        // ignore: missing_return
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         return documentSnapshot.data['name'].toString();
       }
-    });;
+    });
     (context as Element).reassemble();
   }
 
@@ -183,17 +181,19 @@ class _ExtendedHomeState extends State<ExtendedHome> {
     for (var i = 0; i < widget.drawerItems.length; i++) {
       var d = widget.drawerItems[i];
       drawerOptions.add(new ListTile(
-        leading: new Icon(
-          d.icon,
-          color: d.color,
-        ),
-        title: new Text(
-          d.title,
-          style: TextStyle(color: Colors.white),
-        ),
-        selected: i == _selectedDrawerIndex,
-        onTap: () => _onSelectItem(i),
-      ));
+          leading: new Icon(
+            d.icon,
+            color: d.color,
+          ),
+          title: new Text(
+            d.title,
+            style: TextStyle(color: Colors.white),
+          ),
+          selected: i == _selectedDrawerIndex,
+          onTap: () {
+            getCurrentUser();
+            _onSelectItem(i);
+          }));
     }
     return Scaffold(
       appBar: AppBar(

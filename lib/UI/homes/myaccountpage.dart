@@ -1,4 +1,3 @@
-import 'package:VTOP_Extended/UI/loading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,6 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
   String rollno;
   String finalroll;
   FirebaseAuth _auth = FirebaseAuth.instance;
-  final Firestore _fireStore = Firestore.instance;
   TextEditingController _nameController = new TextEditingController();
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _regController = new TextEditingController();
@@ -59,20 +57,18 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
 
   getName() async {
     FirebaseUser user = await _auth.currentUser();
-    finalname = await Firestore.instance
-        .collection("users")
-        .document(user.uid)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
+    finalname =
+        await Firestore.instance.collection("users").document(user.uid).get()
+            // ignore: missing_return
+            .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         return documentSnapshot.data['name'].toString();
       }
     });
-    finalroll = await Firestore.instance
-        .collection("users")
-        .document(user.uid)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
+    finalroll =
+        await Firestore.instance.collection("users").document(user.uid).get()
+            // ignore: missing_return
+            .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         return documentSnapshot.data['rollno'].toString();
       }
@@ -120,7 +116,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 50, top: 10),
                   child: Text(
-                    finalname == null ? "Name: Unknown" : "Name: $finalname",
+                    "Name: $finalname",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -128,11 +124,9 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 50, top: 10, bottom: 30),
+                  padding: const EdgeInsets.only(left: 50, top: 10, bottom: 50),
                   child: Text(
-                    finalroll == "Rollno"
-                        ? "Roll no: Unknown"
-                        : "Roll no: $finalroll",
+                    "Roll no: $finalroll",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
