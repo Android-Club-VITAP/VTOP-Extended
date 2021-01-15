@@ -5,6 +5,8 @@ class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
 
+  Firestore _firestore = Firestore.instance;
+
   final CollectionReference userCollection =
       Firestore.instance.collection('users');
   Future updateUserData(
@@ -48,5 +50,17 @@ class DatabaseService {
 
   Stream<List<Club>> get clubs {
     return clubsCollection.snapshots().map(_clubListFromSnapshot);
+  }
+
+  Future<List<Club>> getClubs() async {
+    QuerySnapshot querySnapshot = await _firestore.collection('clubs').getDocuments();
+    return querySnapshot.documents.map((document) => Club(
+        name: document.data['name'] ?? '',
+        president: document.data['president'] ?? '',
+      faculty: document.data['faculty'] ?? '',
+      bio: document.data['bio'] ?? '',
+      logo: document.data['logo'] ?? '',
+      clubType: document.data['clubType'] ?? ''
+    )).toList();
   }
 }
