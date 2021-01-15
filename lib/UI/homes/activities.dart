@@ -1,5 +1,8 @@
 import 'dart:math';
 import 'dart:ui';
+import 'package:VTOP_Extended/UI/homes/club_details.dart';
+import 'package:VTOP_Extended/models/clubs.dart';
+import 'package:VTOP_Extended/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -86,71 +89,83 @@ class FirstScreen extends StatelessWidget {
 
 // ignore: must_be_immutable
 class SecondScreen extends StatelessWidget {
-  final seconfTabColor = Color(0xFF1d1d1d);
-  final List clubs = [
-    "Android Club",
-    "Open Source Community",
-    "Developer Student's Club",
-    "Null Chapter"
-  ];
-  final List clubtype = ["Technical", "Technical", "Technical", "Technical"];
-  Firestore firestore;
+  final secondTabColor = Color(0xFF1d1d1d);
+  // final List clubs = [
+  //   "Android Club",
+  //   "Open Source Community",
+  //   "Developer Student's Club",
+  //   "Null Chapter"
+  // ];
+  // final List clubtype = ["Technical", "Technical", "Technical", "Technical"];
+  // Firestore firestore;
+
+  DatabaseService _databaseService = DatabaseService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-            itemCount: clubs.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                elevation: 5,
-                color: Colors.white, //Color(0xFF2c2c2c),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    child: Container(
-                      child: Text("VIT"),
-                    ),
-                  ),
-                  title: Text(
-                    clubs[index],
-                    style: TextStyle(color: Colors.black //Colors.white
+        child: FutureBuilder<List<Club>>(
+          future: _databaseService.getClubs(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      elevation: 5,
+                      color: Colors.white, //Color(0xFF2c2c2c),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          child: Container(
+                            child: Text(snapshot.data[index].clubType == 'Technical' ? 'T' : 'NT'),),
                         ),
-                  ),
-                  subtitle: Text(clubtype[index]),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ClubDetails()));
-                  },
-                  //onTap: () =>
-                  //debugPrint("Club Name: ${Clubs.elementAt(index)}"),
-                ),
-              );
-            }),
-      ),
-    );
-  }
-}
-
-class ClubDetails extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("CLUBS"),
-        backgroundColor: Color(0xFF2c2c2c),
-      ),
-      body: Center(
-        child: Container(
-          child: RaisedButton(
-            child: Text("Go Back"),
-            onPressed: () {},
-          ),
+                        title: Text(
+                          snapshot.data[index].name,
+                          style: TextStyle(color: Colors.black), //Colors.white)
+                        ),
+                        subtitle: Text(snapshot.data[index].clubType),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ClubDetails(club: snapshot.data[index],),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  });
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
         ),
       ),
     );
   }
 }
+
+// class ClubDetails extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("CLUBS"),
+//         backgroundColor: Color(0xFF2c2c2c),
+//       ),
+//       body: Center(
+//         child: Container(
+//           child: RaisedButton(
+//             child: Text("Go Back"),
+//             onPressed: () {},
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 generateRandomTiles(int count) {
   Random rnd = new Random();
