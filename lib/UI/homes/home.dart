@@ -1,4 +1,5 @@
 import 'package:VTOP_Extended/UI/homes/activities.dart';
+import 'package:VTOP_Extended/UI/homes/faculty_db.dart';
 import 'package:VTOP_Extended/UI/homes/myaccountpage.dart';
 import 'package:VTOP_Extended/UI/homes/quizpage.dart';
 import 'package:VTOP_Extended/UI/homes/vtoppage.dart';
@@ -23,7 +24,7 @@ class ExtendedHome extends StatefulWidget {
     new DrawerItem("Events & Clubs", Entypo.star_outlined, Colors.blue),
     new DrawerItem("VTOP", AntDesign.weibo_circle, Colors.amber),
     new DrawerItem("Quiz", AntDesign.form, Colors.indigo),
-    new DrawerItem("Teacher Database", Entypo.database, Colors.green),
+    new DrawerItem("Faculty Database", Entypo.database, Colors.green),
     new DrawerItem("About", Entypo.notification, Colors.white)
   ];
 
@@ -45,7 +46,7 @@ class _ExtendedHomeState extends State<ExtendedHome> {
     ),
     new Text("VTOP"),
     new Text("Quiz"),
-    new Text("Teachers"),
+    new Text("Faculty"),
     new Text("About the App")
   ];
 
@@ -135,6 +136,8 @@ class _ExtendedHomeState extends State<ExtendedHome> {
         return new VtopPage();
       case 3:
         return new QuizPage();
+      case 4:
+        return FacultyDB();
       default:
         return Center(
             child: new Text(
