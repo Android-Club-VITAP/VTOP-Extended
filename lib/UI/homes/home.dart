@@ -1,7 +1,9 @@
 import 'package:VTOP_Extended/UI/homes/activities.dart';
+import 'package:VTOP_Extended/UI/homes/faculty_db.dart';
 import 'package:VTOP_Extended/UI/homes/myaccountpage.dart';
 import 'package:VTOP_Extended/UI/homes/quizpage.dart';
 import 'package:VTOP_Extended/UI/homes/vtoppage.dart';
+import 'package:VTOP_Extended/models/faculty.dart';
 import 'package:VTOP_Extended/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +25,7 @@ class ExtendedHome extends StatefulWidget {
     new DrawerItem("Events & Clubs", Entypo.star_outlined, Colors.blue),
     new DrawerItem("VTOP", AntDesign.weibo_circle, Colors.amber),
     new DrawerItem("Quiz", AntDesign.form, Colors.indigo),
-    new DrawerItem("Teacher Database", Entypo.database, Colors.green),
+    new DrawerItem("Faculty Database", Entypo.database, Colors.green),
     new DrawerItem("About", Entypo.notification, Colors.white)
   ];
 
@@ -45,7 +47,7 @@ class _ExtendedHomeState extends State<ExtendedHome> {
     ),
     new Text("VTOP"),
     new Text("Quiz"),
-    new Text("Teachers"),
+    new Text("Faculty"),
     new Text("About the App")
   ];
 
@@ -135,6 +137,8 @@ class _ExtendedHomeState extends State<ExtendedHome> {
         return new VtopPage();
       case 3:
         return new QuizPage();
+      case 4:
+        return FacultyDB();
       default:
         return Center(
             child: new Text(
@@ -200,6 +204,18 @@ class _ExtendedHomeState extends State<ExtendedHome> {
         backgroundColor: backgroundColor,
         centerTitle: true,
         title: titles[_selectedDrawerIndex],
+        actions: [
+          _selectedDrawerIndex == 4
+              ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      showSearch(context: context, delegate: FacultySearch());
+                    }),
+              )
+              : Container()
+        ],
       ),
       drawer: new Drawer(
         child: new Column(

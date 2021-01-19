@@ -1,3 +1,4 @@
+import 'package:VTOP_Extended/models/faculty.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:VTOP_Extended/models/clubs.dart';
 
@@ -62,5 +63,16 @@ class DatabaseService {
       logo: document.data['logo'] ?? '',
       clubType: document.data['clubType'] ?? ''
     )).toList();
+  }
+
+  Future<List<Faculty>> getFaculty() async {
+    QuerySnapshot querySnapshot = await _firestore.collection('faculty').getDocuments();
+    return querySnapshot.documents.map((document) => Faculty(
+      name: document.data['name'] ?? '',
+      department: document.data['department'] ?? '',
+      email: document.data['email'] ?? '',
+      photoLink: document.data['profilepic'] ?? '',
+    )).toList();
+
   }
 }
