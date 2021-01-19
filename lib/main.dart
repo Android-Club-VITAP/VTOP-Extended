@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
-        theme: new ThemeData(
+        theme: ThemeData(
           canvasColor: backgroundColor,
         ),
         home: SplashScr(),
@@ -21,3 +21,5 @@ class App extends StatelessWidget {
     );
   }
 }
+
+// TODO: FIX UI. COLORS. EVERYTHING. LIFE.

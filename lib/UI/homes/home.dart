@@ -3,6 +3,7 @@ import 'package:VTOP_Extended/UI/homes/faculty_db.dart';
 import 'package:VTOP_Extended/UI/homes/myaccountpage.dart';
 import 'package:VTOP_Extended/UI/homes/quizpage.dart';
 import 'package:VTOP_Extended/UI/homes/vtoppage.dart';
+import 'package:VTOP_Extended/models/faculty.dart';
 import 'package:VTOP_Extended/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -203,6 +204,18 @@ class _ExtendedHomeState extends State<ExtendedHome> {
         backgroundColor: backgroundColor,
         centerTitle: true,
         title: titles[_selectedDrawerIndex],
+        actions: [
+          _selectedDrawerIndex == 4
+              ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {
+                      showSearch(context: context, delegate: FacultySearch());
+                    }),
+              )
+              : Container()
+        ],
       ),
       drawer: new Drawer(
         child: new Column(

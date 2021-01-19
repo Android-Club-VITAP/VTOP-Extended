@@ -17,28 +17,9 @@ class FacultyDB extends StatelessWidget {
             return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                      elevation: 5,
-                      color: Colors.white,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          child: Container(
-                            child: Text('VIT'),
-                          ),
-                        ),
-                        title: Text(snapshot.data[index].name),
-                        subtitle: Text(snapshot.data[index].department),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FacultyDetails(
-                                faculty: snapshot.data[index],
-                              ),
-                            ),
-                          );
-                        },
-                      ));
+                  return FacultyCard(
+                    faculty: snapshot.data[index],
+                  );
                 });
           } else {
             return Center(child: CircularProgressIndicator());
@@ -70,18 +51,14 @@ class FacultyDetails extends StatelessWidget {
                 Center(
                   child: Container(
                       height: 300,
-                      child: faculty.photoLink == ''
+                      child: (faculty.photoLink == '')
                           ? Icon(
                               Icons.person,
                               size: 300,
                               color: Colors.grey[600],
                             )
                           : Image.network(
-                              'https://drive.google.com/uc?export=view&id=' +
-                                  faculty.photoLink.substring(
-                                    faculty.photoLink.indexOf('/d/') + 3,
-                                    faculty.photoLink.indexOf('/view'),
-                                  ),
+                              faculty.photoLink,
                               fit: BoxFit.contain,
                               height: 300,
                               loadingBuilder:
@@ -149,6 +126,103 @@ class FacultyDetails extends StatelessWidget {
               ],
             ),
           ),
+        ));
+  }
+}
+
+class FacultySearch extends SearchDelegate<Faculty> {
+  DatabaseService _databaseService = DatabaseService();
+  Future<List<Faculty>> facultyList;
+  FacultySearch() {
+    facultyList = _databaseService.getFaculty();
+  }
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      )
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return FutureBuilder<List<Faculty>>(
+      future: facultyList,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final results = snapshot.data
+              .where((x) => x.name.toLowerCase().contains(query.toLowerCase()));
+          return ListView(
+              children: results
+                  .map<Widget>((faculty) => FacultyCard(faculty: faculty))
+                  .toList());
+        } else {
+          return Center(child: Text('Hi'));
+        }
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return FutureBuilder<List<Faculty>>(
+      future: facultyList,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          if (query != '') {
+            final results = snapshot.data
+                .where((x) => x.name.toLowerCase().contains(query.toLowerCase()));
+            return ListView(
+                children: results
+                    .map<Widget>((faculty) => FacultyCard(faculty: faculty))
+                    .toList());
+          }
+          return Center(child: Text('Type.', style: TextStyle(color: Colors.white),));
+        } else {
+          return Container();
+        }
+      },
+    );
+  }
+}
+
+class FacultyCard extends StatelessWidget {
+  final Faculty faculty;
+  FacultyCard({this.faculty});
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        elevation: 5,
+        color: Colors.white,
+        child: ListTile(
+          leading: Icon(Icons.person, color: Colors.black,),
+          title: Text(faculty.name),
+          // subtitle: Text(faculty.department),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FacultyDetails(
+                  faculty: faculty,
+                ),
+              ),
+            );
+          },
         ));
   }
 }
