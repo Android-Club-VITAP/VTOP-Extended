@@ -210,9 +210,14 @@ class FacultyCard extends StatelessWidget {
         elevation: 5,
         color: Colors.white,
         child: ListTile(
-          leading: Icon(Icons.person, color: Colors.black,),
+          leading: Image.network(
+              faculty.photoLink),
+          // leading: CircleAvatar(
+          //   backgroundColor: Colors.black,
+          //   child: Icon(Icons.person, color: Colors.white,),
+          // ),
           title: Text(faculty.name),
-          // subtitle: Text(faculty.department),
+          subtitle: Text(faculty.department),
           onTap: () {
             Navigator.push(
               context,
