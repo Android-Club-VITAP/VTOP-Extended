@@ -10,6 +10,7 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   String _email = "";
+  bool loading = false;
   final _formKey = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool validatAndSave() {
@@ -25,19 +26,30 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       try {
         await _auth.sendPasswordResetEmail(email: _email);
         setState(() {
+          loading = false;
           String errorMsg = "Password reset link sent to email id please check";
           showDialog(
               context: context,
-              builder: (BuildContext context) {
+              builder: (BuildContext alertcontext) {
                 return AlertDialog(
                   content: Container(
                     child: Text(errorMsg),
                   ),
+                  actions: [
+                    FlatButton(
+                      child: Text('OK'),
+                      onPressed: () {
+                        Navigator.pop(alertcontext);
+                        Navigator.pop(context);
+                      },
+                    )
+                  ],
                 );
               });
         });
       } catch (e) {
         setState(() {
+          loading = false;
           Flushbar(
             borderRadius: 8.0,
             title: "Email not found in database",
@@ -160,6 +172,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       child: RaisedButton(
                         color: Colors.blue,
                         onPressed: () {
+                          setState(() {
+                            loading = true;
+                          });
                           resetPassword(_email);
                         },
                         child: Text(
@@ -172,6 +187,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         elevation: 25,
                       )),
                 ),
+                SizedBox(height: 40,),
+                loading
+                    ? Center(child: Text('Please wait...', style: TextStyle(color: Colors.white),))
+                    : Container()
               ],
             )),
       ),
