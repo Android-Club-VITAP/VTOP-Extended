@@ -48,51 +48,90 @@ class ClubDetails extends StatelessWidget {
                         },
                       ),
               ),
+            ), Text("About: ",
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+            )),
+            SizedBox(
+              height: 10
             ),
-            Center(
-              child: Text(
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+                color: Colors.grey[700],
+              ),
+              height: 80,
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Center(
+                child: Text(
                 club.bio,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 15,
                     fontStyle: FontStyle.italic),
               ),
+            )
             ),
             SizedBox(
               height: 30,
             ),
-            Text(
-              'President:',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
+            Text("President: ",
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+            )),
+            SizedBox(
+              height: 10
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+                color: Colors.grey[700],
+              ),
+              height: 50,
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Center(
+                child: Text(
+                  club.president, 
+                  style: TextStyle(
+                      color: Colors.white,),
+              ),
+            )
             ),
             SizedBox(
               height: 20,
             ),
-            Text(
-              club.president,
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
+             Text("Faculty: ",
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+            )),
             SizedBox(
-              height: 30,
+              height: 10
             ),
-            Text(
-              'Faculty:',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
+           Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+                color: Colors.grey[700],
+              ),
+              height: 50,
+              padding: EdgeInsets.only(left: 10, right: 10),
+              child: Center(
+                child: Text(
+                 club.faculty, 
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15
+                      ),
+              ),
+            )
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              club.faculty,
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
+           
             SizedBox(
               height: 30,
             ),
