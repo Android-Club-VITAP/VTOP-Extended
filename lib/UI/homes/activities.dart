@@ -72,34 +72,35 @@ class FirstScreen extends StatelessWidget {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                return GridView.count(
-                  
-                  shrinkWrap: true,
-                  childAspectRatio: 0.65,
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 5.0,
-                  crossAxisSpacing: 5.0,                  
-                  padding: EdgeInsets.fromLTRB(15, 18, 15, 5),
-                  children: snapshot.data.documents
-                      .map((doc) {
-                        return GridTile(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => EventView(url:doc.data['url'], name: doc.data['name'], details: doc.data['details'], club: doc.data['club'], contact: doc.data['contact'], president: doc.data['president'], )));
-                            },
-                            child: Stack(
-                              children: [
-                               Container(
-                                 width: MediaQuery.of(context).size.width/2,
-                                 child:  buildItem(doc),
-                               )
-                              ],
-                            ),
-                          )
-                          
-                        );
-                      }).toList()
-                      
+                return Scrollbar(
+                    child: GridView.count(
+                    shrinkWrap: true,
+                    childAspectRatio: 0.65,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 5.0,
+                    crossAxisSpacing: 5.0,                  
+                    padding: EdgeInsets.fromLTRB(15, 18, 15, 5),
+                    children: snapshot.data.documents
+                        .map((doc) {
+                          return GridTile(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => EventView(url:doc.data['url'], name: doc.data['name'], details: doc.data['details'], club: doc.data['club'], contact: doc.data['contact'], president: doc.data['president'], )));
+                              },
+                              child: Stack(
+                                children: [
+                                 Container(
+                                   width: MediaQuery.of(context).size.width/2,
+                                   child:  buildItem(doc),
+                                 )
+                                ],
+                              ),
+                            )
+                            
+                          );
+                        }).toList()
+                        
+                  ),
                 );
               },
             )));

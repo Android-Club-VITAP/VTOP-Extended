@@ -1,3 +1,4 @@
+import 'package:VTOP_Extended/main.dart';
 import 'package:VTOP_Extended/models/faculty.dart';
 import 'package:VTOP_Extended/services/database.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +15,16 @@ class FacultyDB extends StatelessWidget {
         future: _databaseService.getFaculty(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return FacultyCard(
-                    faculty: snapshot.data[index],
-                  );
-                });
+            return Scrollbar(
+              thickness: 2.0,
+                          child: ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    return FacultyCard(
+                      faculty: snapshot.data[index],
+                    );
+                  }),
+            );
           } else {
             return Center(child: CircularProgressIndicator());
           }
@@ -39,7 +43,7 @@ class FacultyDetails extends StatelessWidget {
         appBar: AppBar(
           title: Text(faculty.name),
           centerTitle: true,
-          backgroundColor: Color(0xFF2c2c2c),
+          backgroundColor: backgroundColor,
         ),
         body: SingleChildScrollView(
           child: Padding(
