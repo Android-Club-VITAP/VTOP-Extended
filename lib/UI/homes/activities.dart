@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
+import 'package:VTOP_Extended/UI/homes/EventView.dart';
 import 'package:VTOP_Extended/UI/homes/club_details.dart';
 import 'package:VTOP_Extended/models/clubs.dart';
 import 'package:VTOP_Extended/services/database.dart';
@@ -71,33 +72,44 @@ class FirstScreen extends StatelessWidget {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                return StaggeredGridView.count(
+                return GridView.count(
+                  
+                  shrinkWrap: true,
+                  childAspectRatio: 0.65,
                   crossAxisCount: 2,
-                  mainAxisSpacing: 10.0,
-                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 5.0,
+                  crossAxisSpacing: 5.0,                  
                   padding: EdgeInsets.fromLTRB(15, 18, 15, 5),
                   children: snapshot.data.documents
-                      .map((doc) => buildItem(doc))
-                      .toList(),
-                  staggeredTiles:
-                      generateRandomTiles(snapshot.data.documents.length),
+                      .map((doc) {
+                        return GridTile(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => EventView(url:doc.data['url'], name: doc.data['name'], details: doc.data['details'], club: doc.data['club'], contact: doc.data['contact'], president: doc.data['president'], )));
+                            },
+                            child: Stack(
+                              children: [
+                               Container(
+                                 width: MediaQuery.of(context).size.width/2,
+                                 child:  buildItem(doc),
+                               )
+                              ],
+                            ),
+                          )
+                          
+                        );
+                      }).toList()
+                      
                 );
               },
             )));
   }
 }
 
-// ignore: must_be_immutable
+
 class SecondScreen extends StatelessWidget {
   final secondTabColor = Color(0xFF1d1d1d);
-  // final List clubs = [
-  //   "Android Club",
-  //   "Open Source Community",
-  //   "Developer Student's Club",
-  //   "Null Chapter"
-  // ];
-  // final List clubtype = ["Technical", "Technical", "Technical", "Technical"];
-  // Firestore firestore;
+ 
 
   DatabaseService _databaseService = DatabaseService();
 
@@ -147,44 +159,6 @@ class SecondScreen extends StatelessWidget {
   }
 }
 
-// class ClubDetails extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("CLUBS"),
-//         backgroundColor: Color(0xFF2c2c2c),
-//       ),
-//       body: Center(
-//         child: Container(
-//           child: RaisedButton(
-//             child: Text("Go Back"),
-//             onPressed: () {},
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-generateRandomTiles(int count) {
-  Random rnd = new Random();
-  List<StaggeredTile> _staggeredTiles = [];
-  for (int i = 0; i < count; i++) {
-    num mainAxisCellCount = 0;
-    double temp = rnd.nextDouble();
-
-    if (temp > 0.6) {
-      mainAxisCellCount = temp + 0.5;
-    } else if (temp < 0.3) {
-      mainAxisCellCount = temp + 0.9;
-    } else {
-      mainAxisCellCount = temp + 0.7;
-    }
-    _staggeredTiles.add(new StaggeredTile.count(1, mainAxisCellCount));
-  }
-  return _staggeredTiles;
-}
 
 Card buildItem(DocumentSnapshot doc) {
   return Card(
@@ -192,7 +166,7 @@ Card buildItem(DocumentSnapshot doc) {
     color: Colors.white,
     child: InkWell(
       borderRadius: BorderRadius.circular(20),
-      onTap: () {},
+    
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(
@@ -203,7 +177,7 @@ Card buildItem(DocumentSnapshot doc) {
             image: DecorationImage(
                 fit: BoxFit.cover,
                 image: NetworkImage(
-                    "https://images.pexels.com/photos/3667816/pexels-photo-3667816.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"))),
+                    "${doc.data['url']}"))),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: BackdropFilter(
