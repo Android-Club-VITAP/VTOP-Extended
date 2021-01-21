@@ -29,7 +29,7 @@ class _EventViewState extends State<EventView> {
      floatingActionButton: FloatingActionButton(
        onPressed: (){
          setState(() {
-           ispressed = true;
+           ispressed = !ispressed;
          });
        },
        backgroundColor: Colors.red[900],
