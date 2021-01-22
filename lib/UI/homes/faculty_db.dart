@@ -88,16 +88,28 @@ class FacultyDetails extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20)),
+                        fontSize: 18)),
                 SizedBox(
                   height: 20,
                 ),
-                Text(
-                  faculty.department,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
+                Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+                      color: Colors.grey[700],
+                    ),
+                    height: 50,
+                    padding: EdgeInsets.only(left: 10, right: 10),
+                    child: Center(
+                      child: Text(
+                        faculty.department,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
+                    )
                 ),
                 SizedBox(
                   height: 30,
@@ -106,23 +118,34 @@ class FacultyDetails extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20)),
+                        fontSize: 18)),
                 SizedBox(
                   height: 20,
                 ),
-                InkWell(
-                  child: Text(
-                    faculty.email,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      decoration: TextDecoration.underline,
+                Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+                      color: Colors.grey[700],
                     ),
-                  ),
-                  onTap: () async {
-                    var url = 'mailto:' + faculty.email;
-                    if (await canLaunch(url)) await launch(url);
-                  },
+                    height: 50,
+                    padding: EdgeInsets.only(left: 10, right: 10),
+                    child: Center(
+                      child: InkWell(
+                        child: Text(
+                          faculty.email,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                        onTap: () async {
+                          var url = 'mailto:' + faculty.email;
+                          if (await canLaunch(url)) await launch(url);
+                        },
+                      ),
+                    )
                 ),
                 SizedBox(
                   height: 30,
@@ -216,10 +239,6 @@ class FacultyCard extends StatelessWidget {
         child: ListTile(
           leading: Image.network(
               faculty.photoLink),
-          // leading: CircleAvatar(
-          //   backgroundColor: Colors.black,
-          //   child: Icon(Icons.person, color: Colors.white,),
-          // ),
           title: Text(faculty.name),
           subtitle: Text(faculty.department),
           onTap: () {
@@ -235,3 +254,4 @@ class FacultyCard extends StatelessWidget {
         ));
   }
 }
+
