@@ -23,6 +23,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   Future<void> resetPassword(String email) async {
     if (validatAndSave()) {
+      setState(() {
+        loading = true;
+      });
       try {
         await _auth.sendPasswordResetEmail(email: _email);
         setState(() {
@@ -172,9 +175,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       child: RaisedButton(
                         color: Colors.blue,
                         onPressed: () {
-                          setState(() {
-                            loading = true;
-                          });
                           resetPassword(_email);
                         },
                         child: Text(
