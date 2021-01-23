@@ -19,7 +19,6 @@ class EventView extends StatefulWidget {
   @override
   _EventViewState createState() => _EventViewState();
 }
-
 class _EventViewState extends State<EventView> {
   bool ispressed = false;
 
@@ -29,7 +28,7 @@ class _EventViewState extends State<EventView> {
      floatingActionButton: FloatingActionButton(
        onPressed: (){
          setState(() {
-           ispressed = !ispressed;
+           ispressed =!ispressed;
          });
        },
        backgroundColor: Colors.red[900],

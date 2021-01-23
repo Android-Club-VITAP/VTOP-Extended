@@ -73,6 +73,7 @@ class FirstScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 return Scrollbar(
+                    thickness: 2.0,
                     child: GridView.count(
                     shrinkWrap: true,
                     childAspectRatio: 0.65,
@@ -177,6 +178,7 @@ Card buildItem(DocumentSnapshot doc) {
             borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
                 fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.50), BlendMode.darken),
                 image: NetworkImage(
                     "${doc.data['url']}"))),
         child: ClipRRect(

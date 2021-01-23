@@ -219,7 +219,7 @@ class FacultySearch extends SearchDelegate<Faculty> {
                     .map<Widget>((faculty) => FacultyCard(faculty: faculty))
                     .toList());
           }
-          return Center(child: Text('Type.', style: TextStyle(color: Colors.white),));
+          return Center(child: Text('Search for Faculty.', style: TextStyle(color: Colors.white),));
         } else {
           return Container();
         }
@@ -239,8 +239,12 @@ class FacultyCard extends StatelessWidget {
         child: ListTile(
           leading: Image.network(
               faculty.photoLink),
-          title: Text(faculty.name),
-          subtitle: Text(faculty.department),
+          // leading: CircleAvatar(
+          //   backgroundColor: Colors.black,
+          //   child: Icon(Icons.person, color: Colors.white,),
+          // ),
+          title: Text(faculty.name,),
+          subtitle: Text(faculty.department,),
           onTap: () {
             Navigator.push(
               context,
