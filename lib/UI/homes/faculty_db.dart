@@ -9,28 +9,43 @@ class FacultyDB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FutureBuilder<List<Faculty>>(
-        future: _databaseService.getFaculty(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scrollbar(
-              thickness: 2.0,
-                          child: ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return FacultyCard(
-                      faculty: snapshot.data[index],
-                    );
+        appBar: AppBar(
+          backgroundColor: backgroundColor,
+          title: Text("Faculty Database"),
+          centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    showSearch(context: context, delegate: FacultySearch());
                   }),
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-    ));
+            )
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: FutureBuilder<List<Faculty>>(
+            future: _databaseService.getFaculty(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Scrollbar(
+                  thickness: 2.0,
+                  child: ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        return FacultyCard(
+                          faculty: snapshot.data[index],
+                        );
+                      }),
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+        ));
   }
 }
 
@@ -95,7 +110,10 @@ class FacultyDetails extends StatelessWidget {
                 Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8)),
                       color: Colors.grey[700],
                     ),
                     height: 50,
@@ -109,8 +127,7 @@ class FacultyDetails extends StatelessWidget {
                           fontSize: 15,
                         ),
                       ),
-                    )
-                ),
+                    )),
                 SizedBox(
                   height: 30,
                 ),
@@ -125,7 +142,10 @@ class FacultyDetails extends StatelessWidget {
                 Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8)),
                       color: Colors.grey[700],
                     ),
                     height: 50,
@@ -145,8 +165,7 @@ class FacultyDetails extends StatelessWidget {
                           if (await canLaunch(url)) await launch(url);
                         },
                       ),
-                    )
-                ),
+                    )),
                 SizedBox(
                   height: 30,
                 ),
@@ -212,14 +231,18 @@ class FacultySearch extends SearchDelegate<Faculty> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           if (query != '') {
-            final results = snapshot.data
-                .where((x) => x.name.toLowerCase().contains(query.toLowerCase()));
+            final results = snapshot.data.where(
+                (x) => x.name.toLowerCase().contains(query.toLowerCase()));
             return ListView(
                 children: results
                     .map<Widget>((faculty) => FacultyCard(faculty: faculty))
                     .toList());
           }
-          return Center(child: Text('Search for Faculty.', style: TextStyle(color: Colors.white),));
+          return Center(
+              child: Text(
+            'Search for Faculty.',
+            style: TextStyle(color: Colors.white),
+          ));
         } else {
           return Container();
         }
@@ -237,14 +260,17 @@ class FacultyCard extends StatelessWidget {
         elevation: 5,
         color: Colors.white,
         child: ListTile(
-          leading: Image.network(
-              faculty.photoLink),
+          leading: Image.network(faculty.photoLink),
           // leading: CircleAvatar(
           //   backgroundColor: Colors.black,
           //   child: Icon(Icons.person, color: Colors.white,),
           // ),
-          title: Text(faculty.name,),
-          subtitle: Text(faculty.department,),
+          title: Text(
+            faculty.name,
+          ),
+          subtitle: Text(
+            faculty.department,
+          ),
           onTap: () {
             Navigator.push(
               context,
@@ -258,4 +284,3 @@ class FacultyCard extends StatelessWidget {
         ));
   }
 }
-

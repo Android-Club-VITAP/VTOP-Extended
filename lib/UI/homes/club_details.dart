@@ -1,7 +1,6 @@
 import 'package:VTOP_Extended/models/clubs.dart';
 import 'package:flutter/material.dart';
 
-// TODO: MAKE THIS PRETTY
 class ClubDetails extends StatelessWidget {
   final Club club;
   ClubDetails({this.club});
@@ -48,90 +47,88 @@ class ClubDetails extends StatelessWidget {
                         },
                       ),
               ),
-            ), Text("About: ",
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.white,
-            )),
-            SizedBox(
-              height: 10
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
-                color: Colors.grey[700],
-              ),
-              height: 80,
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Center(
-                child: Text(
-                club.bio,
-                textAlign: TextAlign.center,
+            Text("About: ",
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontStyle: FontStyle.italic),
-              ),
-            )
-            ),
+                  fontSize: 15,
+                  color: Colors.white,
+                )),
+            SizedBox(height: 10),
+            Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  color: Colors.grey[700],
+                ),
+                height: 80,
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: Center(
+                  child: Text(
+                    club.bio,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontStyle: FontStyle.italic),
+                  ),
+                )),
             SizedBox(
               height: 30,
             ),
             Text("President: ",
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.white,
-            )),
-            SizedBox(
-              height: 10
-            ),
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                )),
+            SizedBox(height: 10),
             Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
-                color: Colors.grey[700],
-              ),
-              height: 50,
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Center(
-                child: Text(
-                  club.president, 
-                  style: TextStyle(
-                      color: Colors.white,),
-              ),
-            )
-            ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  color: Colors.grey[700],
+                ),
+                height: 50,
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: Center(
+                  child: Text(
+                    club.president,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                )),
             SizedBox(
               height: 20,
             ),
-             Text("Faculty: ",
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.white,
-            )),
-            SizedBox(
-              height: 10
-            ),
-           Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
-                color: Colors.grey[700],
-              ),
-              height: 50,
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Center(
-                child: Text(
-                 club.faculty, 
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15
-                      ),
-              ),
-            )
-            ),
-           
+            Text("Faculty: ",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                )),
+            SizedBox(height: 10),
+            Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8)),
+                  color: Colors.grey[700],
+                ),
+                height: 50,
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: Center(
+                  child: Text(
+                    club.faculty,
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                )),
             SizedBox(
               height: 30,
             ),

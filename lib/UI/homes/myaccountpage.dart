@@ -1,3 +1,4 @@
+import 'package:VTOP_Extended/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -95,10 +96,15 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: backgroundColor,
+        centerTitle: true,
+        title: Text("Accounts"),
+      ),
       resizeToAvoidBottomInset: false,
       body: Scrollbar(
         thickness: 2,
-              child: SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Form(
               key: _formKey,
               child: Column(
@@ -106,7 +112,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 50),
+                    padding: const EdgeInsets.only(left: 20, top: 10),
                     child: Text(
                       "Email: ",
                       style: TextStyle(
@@ -115,29 +121,33 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Padding(
-                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                 child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
-                        color: Colors.grey[700],
-                      ),
-                      height: 50,
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Center(
-                        child: Text(
-                        email == null ? "-----" : email ,
-                          style: TextStyle(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8)),
+                          color: Colors.grey[700],
+                        ),
+                        height: 50,
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Center(
+                          child: Text(
+                            email == null ? "-----" : email,
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: 15,
-                              ),
-                      ),
-                    )
-                    ),
-               ),
-               SizedBox(height:20),
+                            ),
+                          ),
+                        )),
+                  ),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 10),
                     child: Text(
@@ -148,31 +158,38 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,),
-                Padding(
-                 padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                 child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
-                        color: Colors.grey[700],
-                      ),
-                      height: 50,
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Center(
-                        child: Text(
-                        finalname == null ? "-----" : finalname ,
-                          style: TextStyle(
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8)),
+                          color: Colors.grey[700],
+                        ),
+                        height: 50,
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Center(
+                          child: Text(
+                            finalname == null ? "-----" : finalname,
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: 15,
-                              ),
-                      ),
-                    )
-                    ),
-               ),
-               SizedBox(height: 20),
+                            ),
+                          ),
+                        )),
+                  ),
+                  SizedBox(height: 20),
                   Padding(
-                    padding: const EdgeInsets.only(left:20, top: 10,),
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      top: 10,
+                    ),
                     child: Text(
                       "Roll no: ",
                       style: TextStyle(
@@ -182,30 +199,33 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                     ),
                   ),
                   SizedBox(height: 10),
-                     Padding(
-                 padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 40),
-                 child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8), topRight: Radius.circular(8), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
-                        color: Colors.grey[700],
-                      ),
-                      height: 50,
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Center(
-                        child: Text(
-                        finalroll == null ? "-----" : finalroll ,
-                          style: TextStyle(
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, bottom: 40),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8),
+                              bottomLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8)),
+                          color: Colors.grey[700],
+                        ),
+                        height: 50,
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Center(
+                          child: Text(
+                            finalroll == null ? "-----" : finalroll,
+                            style: TextStyle(
                               color: Colors.white,
                               fontSize: 15,
-                              ),
-                      ),
-                    )
-                    ),
-               ),
+                            ),
+                          ),
+                        )),
+                  ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
+                    padding: const EdgeInsets.only(
+                        left: 20.0, right: 20, bottom: 20),
                     child: TextFormField(
                       enabled: false,
                       readOnly: true,
@@ -294,11 +314,13 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                       padding: EdgeInsets.all(3.0),
                       child: Container(
                         decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20), topRight: Radius.circular(20), bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-                        color: Colors.blue[700],
-                      ),
-                        
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20)),
+                          color: Colors.blue[700],
+                        ),
                         child: FlatButton(
                           onPressed: () async {
                             if (_formKey.currentState.validate()) {
@@ -316,26 +338,31 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                               }
                             }
                           },
-                          child:
-                              Text("Save", style: TextStyle(color: Colors.white)),
+                          child: Text("Save",
+                              style: TextStyle(color: Colors.white)),
                         ),
                       ),
                     ),
                   ),
                   Center(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 3.0, right: 3.0, top: 35, bottom: 20),
+                      padding: EdgeInsets.only(
+                          left: 3.0, right: 3.0, top: 35, bottom: 20),
                       child: Container(
                         decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20), topRight: Radius.circular(20), bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-                        color: Colors.deepOrange,
-                      ),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20)),
+                          color: Colors.deepOrange,
+                        ),
                         height: MediaQuery.of(context).size.height * 0.07,
-                        width: MediaQuery.of(context).size.width * 0.9,                    
+                        width: MediaQuery.of(context).size.width * 0.9,
                         child: FlatButton(
                           onPressed: () async {
                             signOut();
+                            Navigator.pop(context);
                           },
                           child: Text("Logout",
                               style: TextStyle(color: Colors.white)),

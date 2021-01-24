@@ -1,9 +1,4 @@
 import 'package:VTOP_Extended/UI/homes/activities.dart';
-import 'package:VTOP_Extended/UI/homes/faculty_db.dart';
-import 'package:VTOP_Extended/UI/homes/myaccountpage.dart';
-import 'package:VTOP_Extended/UI/homes/quizpage.dart';
-import 'package:VTOP_Extended/UI/homes/vtoppage.dart';
-import 'package:VTOP_Extended/models/faculty.dart';
 import 'package:VTOP_Extended/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,23 +29,6 @@ class ExtendedHome extends StatefulWidget {
 }
 
 class _ExtendedHomeState extends State<ExtendedHome> {
-  int _selectedDrawerIndex = 1;
-  final titles = [
-    new Text("Account Management"),
-    new Text(
-      "Extended",
-      style: TextStyle(
-          letterSpacing: 6,
-          color: Colors.white,
-          fontSize: 24,
-          fontWeight: FontWeight.bold),
-    ),
-    new Text("VTOP"),
-    new Text("Quiz"),
-    new Text("Faculty"),
-    new Text("About the App")
-  ];
-
   bool _isEmailVerified = false;
   void _checkEmailVerification() async {
     _isEmailVerified = await _auth.isEmailVerified();
@@ -127,27 +105,6 @@ class _ExtendedHomeState extends State<ExtendedHome> {
     (context as Element).reassemble();
   }
 
-  _getDrawerItemWidget(int pos) {
-    switch (pos) {
-      case 0:
-        return new MyAccountsPage();
-      case 1:
-        return new Activities();
-      case 2:
-        return new VtopPage();
-      case 3:
-        return new QuizPage();
-      case 4:
-        return FacultyDB();
-      default:
-        return Center(
-            child: new Text(
-          "Page under construction!",
-          style: TextStyle(color: Colors.white, fontSize: 20),
-        ));
-    }
-  }
-
   signOut() async {
     try {
       await _auth.signOut();
@@ -155,11 +112,6 @@ class _ExtendedHomeState extends State<ExtendedHome> {
     } catch (e) {
       print(e);
     }
-  }
-
-  _onSelectItem(int index) {
-    setState(() => _selectedDrawerIndex = index);
-    Navigator.of(context).pop(); // close the drawer
   }
 
   final AuthService _auth = AuthService();
@@ -181,41 +133,18 @@ class _ExtendedHomeState extends State<ExtendedHome> {
 
   @override
   Widget build(BuildContext context) {
-    var drawerOptions = <Widget>[];
-    for (var i = 0; i < widget.drawerItems.length; i++) {
-      var d = widget.drawerItems[i];
-      drawerOptions.add(new ListTile(
-          leading: new Icon(
-            d.icon,
-            color: d.color,
-          ),
-          title: new Text(
-            d.title,
-            style: TextStyle(color: Colors.white),
-          ),
-          selected: i == _selectedDrawerIndex,
-          onTap: () {
-            getCurrentUser();
-            _onSelectItem(i);
-          }));
-    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backgroundColor,
         centerTitle: true,
-        title: titles[_selectedDrawerIndex],
-        actions: [
-          _selectedDrawerIndex == 4
-              ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {
-                      showSearch(context: context, delegate: FacultySearch());
-                    }),
-              )
-              : Container()
-        ],
+        title: Text(
+          "Extended",
+          style: TextStyle(
+              letterSpacing: 6,
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
+        ),
       ),
       drawer: new Drawer(
         child: new Column(
@@ -230,12 +159,77 @@ class _ExtendedHomeState extends State<ExtendedHome> {
               accountEmail:
                   email == null ? Text("Email Not found") : Text(email),
             ),
-            new Column(children: drawerOptions)
+            new Column(children: [
+              ListTile(
+                leading: Icon(
+                  AntDesign.user,
+                  color: Colors.red,
+                ),
+                title: Text(
+                  "My Accounts",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+                  Navigator.popAndPushNamed(context, 'Accounts');
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  AntDesign.weibo_circle,
+                  color: Colors.amber,
+                ),
+                title: Text(
+                  "VTOP",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+                  Navigator.popAndPushNamed(context, 'Vtop');
+                },
+              ),
+              ListTile(
+                  leading: Icon(
+                    AntDesign.form,
+                    color: Colors.indigo,
+                  ),
+                  title: Text(
+                    "QUIZ",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.popAndPushNamed(context, 'quiz');
+                  }),
+              ListTile(
+                  leading: Icon(
+                    Entypo.database,
+                    color: Colors.green,
+                  ),
+                  title: Text(
+                    "Faculty Database",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.popAndPushNamed(context, 'FacD');
+                  }),
+              ListTile(
+                leading: Icon(
+                  Entypo.notification,
+                  color: Colors.red,
+                ),
+                title: Text(
+                  "About",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+                  debugPrint("HEHEHEHEHEHEHHE");
+                  Navigator.of(context).pop();
+                },
+              ),
+            ])
           ],
         ),
       ),
       backgroundColor: backgroundColor,
-      body: _getDrawerItemWidget(_selectedDrawerIndex),
+      body: Activities(),
     );
   }
 }

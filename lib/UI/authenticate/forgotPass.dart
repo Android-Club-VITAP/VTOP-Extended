@@ -187,9 +187,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         elevation: 25,
                       )),
                 ),
-                SizedBox(height: 40,),
+                SizedBox(
+                  height: 40,
+                ),
                 loading
-                    ? Center(child: Text('Please wait...', style: TextStyle(color: Colors.white),))
+                    ? Center(
+                        child: Text(
+                        'Please wait...',
+                        style: TextStyle(color: Colors.white),
+                      ))
                     : Container()
               ],
             )),

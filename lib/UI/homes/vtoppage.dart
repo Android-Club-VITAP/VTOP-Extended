@@ -1,3 +1,4 @@
+import 'package:VTOP_Extended/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -10,6 +11,12 @@ class _VtopPageState extends State<VtopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: backgroundColor,
+        title: Text("VTOP"),
+        centerTitle: true,
+        
+      ),
       body: Padding(
         padding: const EdgeInsets.all(1.0),
         child: InAppWebView(
