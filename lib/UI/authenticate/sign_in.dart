@@ -131,7 +131,7 @@ class _SignInState extends State<SignIn> {
                                         builder: (context) =>
                                             ForgotPassword()));
                               },
-                            text: "Forget Password?",
+                            text: "Forgot Password ?",
                             style: TextStyle(
                                 shadows: <Shadow>[
                                   Shadow(

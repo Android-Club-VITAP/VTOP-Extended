@@ -122,7 +122,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       top: MediaQuery.of(context).size.height * 0.08,
                       left: MediaQuery.of(context).size.width * 0.1),
                   child: Text(
-                    "Forgot Password",
+                    "Forgot Password ?",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 35,
@@ -132,7 +132,20 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
                 Container(
                   margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.2,
+                      top: MediaQuery.of(context).size.height * 0.08,
+                      left: MediaQuery.of(context).size.width * 0.1),
+                  child: Text(
+                    "Reset here :",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.1,
                       left: MediaQuery.of(context).size.width * 0.066,
                       right: MediaQuery.of(context).size.width * 0.066),
                   child: TextFormField(

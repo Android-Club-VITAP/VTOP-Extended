@@ -232,7 +232,7 @@ class _RegisterState extends State<Register> {
                                     MediaQuery.of(context).size.width * 0.18),
                             child: RichText(
                                 text: TextSpan(
-                                    text: "Go back to ",
+                                    text: "Already have an account : ",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 15,
