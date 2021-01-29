@@ -137,6 +137,9 @@ class _ExtendedHomeState extends State<ExtendedHome> {
       appBar: AppBar(
         backgroundColor: backgroundColor,
         centerTitle: true,
+        actions: [
+          IconButton(icon: Icon(Icons.notification_important_outlined), onPressed: () => Navigator.pushNamed(context, 'Notifications'))
+        ],
         title: Text(
           "Extended",
           style: TextStyle(

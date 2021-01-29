@@ -1,5 +1,6 @@
 import 'package:VTOP_Extended/UI/homes/faculty_db.dart';
 import 'package:VTOP_Extended/UI/homes/myaccountpage.dart';
+import 'package:VTOP_Extended/UI/homes/notifiactionPanel.dart';
 import 'package:VTOP_Extended/UI/homes/quizpage.dart';
 import 'package:VTOP_Extended/UI/homes/vtoppage.dart';
 import 'package:VTOP_Extended/models/user.dart';
@@ -31,6 +32,7 @@ class App extends StatelessWidget {
           'Vtop': (context) => VtopPage(),
           'quiz': (context) => QuizPage(),
           'FacD': (context) => FacultyDB(),
+          'Notifications': (context) => NotificationsPanel(),
         },
         home: SplashScr(),
       ),

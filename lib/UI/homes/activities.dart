@@ -128,36 +128,39 @@ class SecondScreen extends StatelessWidget {
               return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 5,
-                      color: Colors.white, //Color(0xFF2c2c2c),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          child: Container(
-                            child: Text(
-                                snapshot.data[index].clubType == 'Technical'
-                                    ? 'T'
-                                    : 'NT'),
-                          ),
-                        ),
-                        title: Text(
-                          snapshot.data[index].name,
-                          style: TextStyle(color: Colors.black), //Colors.white)
-                        ),
-                        subtitle: Text(snapshot.data[index].clubType),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ClubDetails(
-                                club: snapshot.data[index],
-                              ),
+                    return Container(
+                      child: Card(
+                        elevation: 5,
+                        color: Colors.white, //Color(0xFF2c2c2c),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            child: Container(
+                              child: Text(
+                                  snapshot.data[index].clubType == 'Technical'
+                                      ? 'T'
+                                      : 'NT'),
                             ),
-                          );
-                        },
+                          ),
+                          title: Text(
+                            snapshot.data[index].name,
+                            style: TextStyle(color: Colors.black), //Colors.white)
+                          ),
+                          subtitle: Text(snapshot.data[index].clubType),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ClubDetails(
+                                  club: snapshot.data[index],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     );
-                  });
+                  }
+                  );
             } else {
               return Center(child: CircularProgressIndicator());
             }
