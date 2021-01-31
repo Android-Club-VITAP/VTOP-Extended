@@ -75,11 +75,12 @@ class AuthService {
   //Email Verified
   Future<bool> isEmailVerified() async {
     User user = await _auth.currentUser;
+    await user.reload();
     return user.emailVerified;
   }
 
-  Future<User> currentUser() async {
-    User user = await _auth.currentUser;
+  User currentUser() {
+    User user = _auth.currentUser;
     return user;
   }
 
