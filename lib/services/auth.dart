@@ -4,22 +4,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   //Create user Object based on FirebaseUser
-  User _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? User(uid: user.uid) : null;
-  }
+  // User _userFromFirebaseUser(FirebaseUser user) {
+  //   return user != null ? User(uid: user.uid) : null;
+  // }
 
   //Auth change User Stream
   Stream<User> get user {
-    return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
+    // return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
+    return _auth.authStateChanges();
   }
 
   //Sign in anon
   Future signInAnon() async {
     try {
-      AuthResult result = await _auth.signInAnonymously();
-      FirebaseUser user = result.user;
-      return _userFromFirebaseUser(user);
+      UserCredential result = await _auth.signInAnonymously();
+      User user = result.user;
+      return user;
     } catch (e) {
       print(e.toString());
       return null;
@@ -29,10 +31,10 @@ class AuthService {
   //Sign in with email and password
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(
+      UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser user = result.user;
-      return _userFromFirebaseUser(user);
+      User user = result.user;
+      return user;
     } catch (e) {
       print(e.toString());
       return null;
@@ -42,13 +44,13 @@ class AuthService {
   //Register with email and password
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser user = result.user;
+      User user = result.user;
       sendEmailVerification();
       await DatabaseService(uid: user.uid)
           .updateUserData("Unknown", user.email, "Rollno", ["Clubnames"]);
-      return _userFromFirebaseUser(user);
+      return user;
     } catch (e) {
       print(e.toString());
       return null;
@@ -66,18 +68,18 @@ class AuthService {
 
   //User Verification
   Future<void> sendEmailVerification() async {
-    FirebaseUser user = await _auth.currentUser();
+    User user = await _auth.currentUser;
     user.sendEmailVerification();
   }
 
   //Email Verified
   Future<bool> isEmailVerified() async {
-    FirebaseUser user = await _auth.currentUser();
-    return user.isEmailVerified;
+    User user = await _auth.currentUser;
+    return user.emailVerified;
   }
 
-  Future<FirebaseUser> currentUser() async {
-    FirebaseUser user = await _auth.currentUser();
+  Future<User> currentUser() async {
+    User user = await _auth.currentUser;
     return user;
   }
 

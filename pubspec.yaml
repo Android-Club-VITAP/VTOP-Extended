@@ -23,9 +23,9 @@ environment:
 dependencies:
   flutter_launcher_icons: ^0.8.0
   flare_splash_screen: ^3.0.1
-  firebase_auth: ^0.14.0+5
-  cloud_firestore: ^0.12.9+4
-  provider: ^3.1.0
+  firebase_auth: ^0.20.0+1
+  cloud_firestore: ^0.16.0
+  provider: ^4.3.3
   flutter_spinkit: "^4.0.0"
   flushbar: ^1.10.4
   flutter_staggered_grid_view: any

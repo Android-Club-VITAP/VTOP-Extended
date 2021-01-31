@@ -28,57 +28,53 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
   }
 
   updateProfileName(name) async {
-    FirebaseUser user = await _auth.currentUser();
+    User user = await _auth.currentUser;
     user.reload();
-    UserUpdateInfo userUpdateInfo = UserUpdateInfo();
-    userUpdateInfo.displayName = name;
-    if (user != null) {
-      user.updateProfile(userUpdateInfo);
-    }
+    await user.updateProfile(displayName: name);
     print(user.displayName);
-    Firestore.instance
+    FirebaseFirestore.instance
         .collection("users")
-        .document(user.uid)
-        .updateData({"name": name}).catchError((e) {
+        .doc(user.uid)
+        .update({"name": name}).catchError((e) {
       print(e.toString());
     });
     getName();
   }
 
   updateRollno(rollno) async {
-    FirebaseUser user = await _auth.currentUser();
-    Firestore.instance
+    User user = await _auth.currentUser;
+    FirebaseFirestore.instance
         .collection("users")
-        .document(user.uid)
-        .updateData({"rollno": rollno}).catchError((e) {
+        .doc(user.uid)
+        .update({"rollno": rollno}).catchError((e) {
       print(e.toString());
     });
     getName();
   }
 
   getName() async {
-    FirebaseUser user = await _auth.currentUser();
+    User user = await _auth.currentUser;
     finalname =
-        await Firestore.instance.collection("users").document(user.uid).get()
+        await FirebaseFirestore.instance.collection("users").doc(user.uid).get()
             // ignore: missing_return
             .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
-        return documentSnapshot.data['name'].toString();
+        return documentSnapshot.data()['name'].toString();
       }
     });
     finalroll =
-        await Firestore.instance.collection("users").document(user.uid).get()
+        await FirebaseFirestore.instance.collection("users").doc(user.uid).get()
             // ignore: missing_return
             .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
-        return documentSnapshot.data['rollno'].toString();
+        return documentSnapshot.data()['rollno'].toString();
       }
     });
     (context as Element).reassemble();
   }
 
   getEmail() async {
-    FirebaseUser user = await _auth.currentUser();
+    User user = await _auth.currentUser;
     email = user.email;
     (context as Element).reassemble();
   }

@@ -6,13 +6,13 @@ class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
 
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   final CollectionReference userCollection =
-      Firestore.instance.collection('users');
+      FirebaseFirestore.instance.collection('users');
   Future updateUserData(
       String name, String email, String rollno, List<String> clubnames) async {
-    return await userCollection.document(uid).setData({
+    return await userCollection.doc(uid).set({
       'name': name,
       'email': email,
       'rollno': rollno,
@@ -25,10 +25,10 @@ class DatabaseService {
   }
 
   final CollectionReference clubsCollection =
-      Firestore.instance.collection('clubs');
+      FirebaseFirestore.instance.collection('clubs');
   Future updateClubData(String name, String president, String faculty,
       String bio, String logo) async {
-    return await userCollection.document(uid).setData({
+    return await userCollection.doc(uid).set({
       'name': name,
       'president': president,
       'faculty': faculty,
@@ -38,13 +38,13 @@ class DatabaseService {
   }
 
   List<Club> _clubListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc) {
+    return snapshot.docs.map((doc) {
       return Club(
-        name: doc.data['name'] ?? '',
-        president: doc.data['president'] ?? '',
-        faculty: doc.data['faculty'] ?? '',
-        bio: doc.data['bio'] ?? '',
-        logo: doc.data['logo'] ?? '',
+        name: doc.data()['name'] ?? '',
+        president: doc.data()['president'] ?? '',
+        faculty: doc.data()['faculty'] ?? '',
+        bio: doc.data()['bio'] ?? '',
+        logo: doc.data()['logo'] ?? '',
       );
     }).toList();
   }
@@ -54,24 +54,24 @@ class DatabaseService {
   }
 
   Future<List<Club>> getClubs() async {
-    QuerySnapshot querySnapshot = await _firestore.collection('clubs').getDocuments();
-    return querySnapshot.documents.map((document) => Club(
-        name: document.data['name'] ?? '',
-        president: document.data['president'] ?? '',
-      faculty: document.data['faculty'] ?? '',
-      bio: document.data['bio'] ?? '',
-      logo: document.data['logo'] ?? '',
-      clubType: document.data['clubType'] ?? ''
+    QuerySnapshot querySnapshot = await _firestore.collection('clubs').get();
+    return querySnapshot.docs.map((document) => Club(
+        name: document.data()['name'] ?? '',
+        president: document.data()['president'] ?? '',
+      faculty: document.data()['faculty'] ?? '',
+      bio: document.data()['bio'] ?? '',
+      logo: document.data()['logo'] ?? '',
+      clubType: document.data()['clubType'] ?? ''
     )).toList();
   }
 
   Future<List<Faculty>> getFaculty() async {
-    QuerySnapshot querySnapshot = await _firestore.collection('faculty').getDocuments();
-    return querySnapshot.documents.map((document) => Faculty(
-      name: document.data['name'] ?? '',
-      department: document.data['department'] ?? '',
-      email: document.data['email'] ?? '',
-      photoLink: document.data['profilepic'] ?? '',
+    QuerySnapshot querySnapshot = await _firestore.collection('faculty').get();
+    return querySnapshot.docs.map((document) => Faculty(
+      name: document.data()['name'] ?? '',
+      department: document.data()['department'] ?? '',
+      email: document.data()['email'] ?? '',
+      photoLink: document.data()['profilepic'] ?? '',
     )).toList();
 
   }

@@ -63,7 +63,7 @@ class FirstScreen extends StatelessWidget {
         body: Padding(
             padding: EdgeInsets.only(top: 0.0),
             child: StreamBuilder<QuerySnapshot>(
-              stream: Firestore.instance.collection('events').snapshots(),
+              stream: FirebaseFirestore.instance.collection('events').snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData)
@@ -79,7 +79,7 @@ class FirstScreen extends StatelessWidget {
                       mainAxisSpacing: 5.0,
                       crossAxisSpacing: 5.0,
                       padding: EdgeInsets.fromLTRB(15, 18, 15, 5),
-                      children: snapshot.data.documents.map((doc) {
+                      children: snapshot.data.docs.map((doc) {
                         return GridTile(
                             child: GestureDetector(
                           onTap: () {
@@ -87,12 +87,12 @@ class FirstScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => EventView(
-                                          url: doc.data['url'],
-                                          name: doc.data['name'],
-                                          details: doc.data['details'],
-                                          club: doc.data['club'],
-                                          contact: doc.data['contact'],
-                                          president: doc.data['president'],
+                                          url: doc.data()['url'],
+                                          name: doc.data()['name'],
+                                          details: doc.data()['details'],
+                                          club: doc.data()['club'],
+                                          contact: doc.data()['contact'],
+                                          president: doc.data()['president'],
                                         )));
                           },
                           child: Stack(
@@ -188,7 +188,7 @@ Card buildItem(DocumentSnapshot doc) {
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
                     Colors.black.withOpacity(0.50), BlendMode.darken),
-                image: NetworkImage("${doc.data['url']}"))),
+                image: NetworkImage("${doc.data()['url']}"))),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: BackdropFilter(
@@ -200,7 +200,7 @@ Card buildItem(DocumentSnapshot doc) {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
-                    '${doc.data['name']}',
+                    '${doc.data()['name']}',
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),

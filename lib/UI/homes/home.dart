@@ -93,13 +93,13 @@ class _ExtendedHomeState extends State<ExtendedHome> {
   }
 
   getCurrentUser() async {
-    FirebaseUser user = await _auth.currentUser();
+    User user = await _auth.currentUser();
     email = user.email;
-    name = await Firestore.instance.collection("users").document(user.uid).get()
+    name = await FirebaseFirestore.instance.collection("users").doc(user.uid).get()
         // ignore: missing_return
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
-        return documentSnapshot.data['name'].toString();
+        return documentSnapshot.data()['name'].toString();
       }
     });
     (context as Element).reassemble();
@@ -117,7 +117,7 @@ class _ExtendedHomeState extends State<ExtendedHome> {
   final AuthService _auth = AuthService();
   String name;
   String email;
-  FirebaseUser user;
+  User user;
   FirebaseAuth auth;
   final backgroundColor = Color(0xFF2c2c2c);
   final firstTabColor = Color(0xFF1d1d1d);

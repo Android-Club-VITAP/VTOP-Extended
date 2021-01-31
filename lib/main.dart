@@ -3,14 +3,19 @@ import 'package:VTOP_Extended/UI/homes/myaccountpage.dart';
 import 'package:VTOP_Extended/UI/homes/notifiactionPanel.dart';
 import 'package:VTOP_Extended/UI/homes/quizpage.dart';
 import 'package:VTOP_Extended/UI/homes/vtoppage.dart';
-import 'package:VTOP_Extended/models/user.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:VTOP_Extended/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'UI/SplashScreen.dart';
 import 'package:flutter/services.dart';
 
-void main() => runApp(App());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(App());
+}
 final backgroundColor = Color(0xFF2c2c2c);
 
 class App extends StatelessWidget {
