@@ -93,11 +93,12 @@ class _ExtendedHomeState extends State<ExtendedHome> {
   }
 
   getCurrentUser() async {
-    User user = await _auth.currentUser();
+    User user = _auth.currentUser();
     email = user.email;
-    name = await FirebaseFirestore.instance.collection("users").doc(user.uid).get()
-        // ignore: missing_return
-        .then((DocumentSnapshot documentSnapshot) {
+    name =
+        await FirebaseFirestore.instance.collection("users").doc(user.uid).get()
+            // ignore: missing_return
+            .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         return documentSnapshot.data()['name'].toString();
       }
@@ -138,7 +139,9 @@ class _ExtendedHomeState extends State<ExtendedHome> {
         backgroundColor: backgroundColor,
         centerTitle: true,
         actions: [
-          IconButton(icon: Icon(Icons.notification_important_outlined), onPressed: () => Navigator.pushNamed(context, 'Notifications'))
+          IconButton(
+              icon: Icon(Icons.notification_important_outlined),
+              onPressed: () => Navigator.pushNamed(context, 'Notifications'))
         ],
         title: Text(
           "Extended",
@@ -223,7 +226,6 @@ class _ExtendedHomeState extends State<ExtendedHome> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onTap: () {
-                  debugPrint("HEHEHEHEHEHEHHE");
                   Navigator.of(context).pop();
                 },
               ),

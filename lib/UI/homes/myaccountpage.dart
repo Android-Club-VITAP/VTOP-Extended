@@ -28,7 +28,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
   }
 
   updateProfileName(name) async {
-    User user = await _auth.currentUser;
+    User user = _auth.currentUser;
     user.reload();
     await user.updateProfile(displayName: name);
     print(user.displayName);
@@ -42,7 +42,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
   }
 
   updateRollno(rollno) async {
-    User user = await _auth.currentUser;
+    User user = _auth.currentUser;
     FirebaseFirestore.instance
         .collection("users")
         .doc(user.uid)
@@ -53,7 +53,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
   }
 
   getName() async {
-    User user = await _auth.currentUser;
+    User user = _auth.currentUser;
     finalname =
         await FirebaseFirestore.instance.collection("users").doc(user.uid).get()
             // ignore: missing_return
@@ -74,9 +74,8 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
   }
 
   getEmail() async {
-    User user = await _auth.currentUser;
+    User user = _auth.currentUser;
     email = user.email;
-    (context as Element).reassemble();
   }
 
   signOut() async {

@@ -1,4 +1,3 @@
-import 'package:VTOP_Extended/models/user.dart';
 import 'package:VTOP_Extended/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -68,13 +67,13 @@ class AuthService {
 
   //User Verification
   Future<void> sendEmailVerification() async {
-    User user = await _auth.currentUser;
+    User user = _auth.currentUser;
     user.sendEmailVerification();
   }
 
   //Email Verified
   Future<bool> isEmailVerified() async {
-    User user = await _auth.currentUser;
+    User user = _auth.currentUser;
     await user.reload();
     return user.emailVerified;
   }
@@ -83,6 +82,4 @@ class AuthService {
     User user = _auth.currentUser;
     return user;
   }
-
-  
 }
