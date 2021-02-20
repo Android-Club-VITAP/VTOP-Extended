@@ -23,7 +23,7 @@ class ClubDetails extends StatelessWidget {
                 child: club.logo == ''
                     ? Center(
                         child: Text(
-                          'No logo provided :(',
+                          'No logo found',
                           style: TextStyle(color: Colors.white),
                         ),
                       )

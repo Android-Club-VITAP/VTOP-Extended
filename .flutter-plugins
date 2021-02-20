@@ -1,13 +1,13 @@
 # This is a generated file; do not edit or check into version control.
-cloud_firestore=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\cloud_firestore-0.16.0\\
-cloud_firestore_web=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\cloud_firestore_web-0.3.0+1\\
-firebase_auth=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\firebase_auth-0.20.0+1\\
-firebase_auth_web=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\firebase_auth_web-0.3.2+6\\
-firebase_core=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\firebase_core-0.7.0\\
-firebase_core_web=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\firebase_core_web-0.2.1+3\\
-flutter_inappwebview=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\flutter_inappwebview-4.0.0+4\\
-url_launcher=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\url_launcher-5.7.10\\
-url_launcher_linux=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\url_launcher_linux-0.0.1+4\\
-url_launcher_macos=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\url_launcher_macos-0.0.1+9\\
-url_launcher_web=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\url_launcher_web-0.1.5+1\\
-url_launcher_windows=C:\\Users\\kbhvarshini\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dartlang.org\\url_launcher_windows-0.0.1+3\\
+cloud_firestore=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore-0.16.0\\
+cloud_firestore_web=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore_web-0.3.0+1\\
+firebase_auth=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-0.20.0+1\\
+firebase_auth_web=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth_web-0.3.2+6\\
+firebase_core=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-0.7.0\\
+firebase_core_web=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-0.2.1+3\\
+flutter_inappwebview=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_inappwebview-4.0.0+4\\
+url_launcher=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher-5.7.10\\
+url_launcher_linux=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_linux-0.0.1+4\\
+url_launcher_macos=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_macos-0.0.1+9\\
+url_launcher_web=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_web-0.1.5+1\\
+url_launcher_windows=F:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_windows-0.0.1+3\\

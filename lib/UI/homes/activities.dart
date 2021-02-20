@@ -63,7 +63,8 @@ class FirstScreen extends StatelessWidget {
         body: Padding(
             padding: EdgeInsets.only(top: 0.0),
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('events').snapshots(),
+              stream:
+                  FirebaseFirestore.instance.collection('events').snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData)
@@ -74,7 +75,7 @@ class FirstScreen extends StatelessWidget {
                   thickness: 2.0,
                   child: GridView.count(
                       shrinkWrap: true,
-                      childAspectRatio: 0.65,
+                      childAspectRatio: 0.75,
                       crossAxisCount: 2,
                       mainAxisSpacing: 5.0,
                       crossAxisSpacing: 5.0,
@@ -143,7 +144,8 @@ class SecondScreen extends StatelessWidget {
                           ),
                           title: Text(
                             snapshot.data[index].name,
-                            style: TextStyle(color: Colors.black), //Colors.white)
+                            style:
+                                TextStyle(color: Colors.black), //Colors.white)
                           ),
                           subtitle: Text(snapshot.data[index].clubType),
                           onTap: () {
@@ -159,8 +161,7 @@ class SecondScreen extends StatelessWidget {
                         ),
                       ),
                     );
-                  }
-                  );
+                  });
             } else {
               return Center(child: CircularProgressIndicator());
             }
