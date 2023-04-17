@@ -316,7 +316,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                                 bottomRight: Radius.circular(20)),
                             color: Colors.blue[700],
                           ),
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
                                 try {
@@ -354,7 +354,7 @@ class _MyAccountsPageState extends State<MyAccountsPage> {
                           ),
                           height: MediaQuery.of(context).size.height * 0.07,
                           width: MediaQuery.of(context).size.width * 0.9,
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () async {
                               signOut();
                               Navigator.pop(context);

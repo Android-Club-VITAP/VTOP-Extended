@@ -92,7 +92,7 @@ class _NotificationsPanelState extends State<NotificationsPanel> {
                         items.removeAt(index);
                       });
                     }
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("$item dismissed"),
                       duration: Duration(milliseconds: 500),
                     ));

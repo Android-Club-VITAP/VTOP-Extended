@@ -39,7 +39,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     child: Text(errorMsg),
                   ),
                   actions: [
-                    FlatButton(
+                    TextButton(
                       child: Text('OK'),
                       onPressed: () {
                         Navigator.pop(alertcontext);
@@ -62,7 +62,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             reverseAnimationCurve: Curves.decelerate,
             forwardAnimationCurve: Curves.bounceIn,
             backgroundColor: Colors.black,
-            mainButton: FlatButton(
+            mainButton: TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -185,8 +185,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           top: MediaQuery.of(context).size.height * 0.1,
                           left: MediaQuery.of(context).size.width * 0.066,
                           right: MediaQuery.of(context).size.width * 0.066),
-                      child: RaisedButton(
-                        color: Colors.blue,
+                      child: ElevatedButton(
+                        // color: Colors.blue,
                         onPressed: () {
                           resetPassword(_email);
                         },
@@ -197,7 +197,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               fontSize: 18,
                               fontWeight: FontWeight.w900),
                         ),
-                        elevation: 25,
+                        // elevation: 25,
                       )),
                 ),
                 SizedBox(

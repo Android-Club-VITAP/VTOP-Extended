@@ -51,14 +51,14 @@ class _ExtendedHomeState extends State<ExtendedHome> {
           title: new Text("Verify your account"),
           content: new Text("Please verify account in the link sent to email"),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
               child: new Text("Resend link"),
               onPressed: () {
                 Navigator.of(context).pop();
                 _resentVerifyEmail();
               },
             ),
-            new FlatButton(
+            new TextButton(
               child: new Text("Dismiss"),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -80,7 +80,7 @@ class _ExtendedHomeState extends State<ExtendedHome> {
           content:
               new Text("Link to verify account has been sent to your email"),
           actions: <Widget>[
-            new FlatButton(
+            new TextButton(
               child: new Text("Dismiss"),
               onPressed: () {
                 Navigator.of(context).pop();

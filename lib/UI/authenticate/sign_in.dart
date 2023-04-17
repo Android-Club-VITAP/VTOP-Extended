@@ -151,8 +151,8 @@ class _SignInState extends State<SignIn> {
                               top: MediaQuery.of(context).size.height * 0.05,
                               left: MediaQuery.of(context).size.width * 0.066,
                               right: MediaQuery.of(context).size.width * 0.066),
-                          child: RaisedButton(
-                            color: Colors.pink,
+                          child: ElevatedButton(
+                            // color: Colors.pink,
                             onPressed: () async {
                               if (_formkey.currentState.validate()) {
                                 setState(() => loading = true);
@@ -175,7 +175,7 @@ class _SignInState extends State<SignIn> {
                                             Curves.decelerate,
                                         forwardAnimationCurve: Curves.bounceIn,
                                         backgroundColor: Colors.black,
-                                        mainButton: FlatButton(
+                                        mainButton: TextButton(
                                             onPressed: () {
                                               Navigator.pop(context);
                                             },
@@ -207,7 +207,7 @@ class _SignInState extends State<SignIn> {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w900),
                             ),
-                            elevation: 25,
+                            // elevation: 25,
                           )),
                       Center(
                         child: Container(
